@@ -54,7 +54,7 @@ function App() {
 
     try {
       //4. SEND ID TO BACKEND: Attach sessionId to the chat request
-      const response = await fetch("http://localhost:3000/chat", {
+      const response = await fetch("https://neoai-backend-9ubx.onrender.com/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: userMsg.text, sessionId: sessionId }),
@@ -77,8 +77,8 @@ function App() {
 
   const handleReset = async () => {
     try {
-      // 🧹 5. RESET ID: Tell backend whose memory to wipe
-      const response = await fetch("http://localhost:3000/reset", {
+      //  5. RESET ID: Tell backend whose memory to wipe
+      const response = await fetch("https://neoai-backend-9ubx.onrender.com/reset", {
         method: "POST", 
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ sessionId: sessionId }) 
