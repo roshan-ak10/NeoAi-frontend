@@ -169,7 +169,7 @@ function App() {
               onClick={handleSendMessage}
               disabled={isLoading}
             >
-              Send
+              ➤
             </button>
           </div>
         </div>
