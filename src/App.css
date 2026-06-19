@@ -1,5 +1,12 @@
-*
-{
+/* Base styles and resets */
+#root {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+}
+
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -7,20 +14,24 @@
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background-color: #f4f7f9; /* Light ocean breeze */
+  background-color: #f4f7f9;
+  margin: 0;
+  padding: 0;
   overflow-x: hidden;
 }
 
-/*main layout */
+/* Main app layout */
 .app-container {
+  transition: background-color 0.4s ease, color 0.4s ease;
   display: flex;
   height: 100vh;
   width: 100%;
   overflow: hidden;
 }
 
-/*Sidebar */
+/* Sidebar navigation */
 .sidebar {
+  transition: background-color 0.4s ease, color 0.4s ease;
   width: 260px;
   background-color: #ffffff;
   border-right: 1px solid #e0e0e0;
@@ -33,9 +44,9 @@ body {
 
 .logo {
   font-size: 32px;
-  font-weight:bolder;
+  font-weight: bolder;
   margin-bottom: 60px;
-  color:#4f46e5
+  color: #4f46e5;
 }
 
 .new-chat-btn {
@@ -44,7 +55,7 @@ body {
   background-color: #6366f1;
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 16px;
   cursor: pointer;
   font-weight: bold;
 }
@@ -53,15 +64,39 @@ body {
   background-color: #4f46e5;
 }
 
-/*Main Ocean*/
+/* Empty chat welcome screen */
+.empty-chat-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+}
+
+/* Light mode text color */
+.empty-chat-state h2 {
+  margin-bottom: 8px;
+  color: #000000; 
+  font-size: 28px;
+  transition: color 0.4s ease;
+}
+
+/* Dark mode text color */
+.ocean-mode .empty-chat-state h2 {
+  color: #ffffff; 
+}
+
+/* Chat area and messages */
 .main-content {
+  transition: background-color 0.4s ease, color 0.4s ease;
   flex: 1; 
   display: flex;
   flex-direction: column;
   background-color: whitesmoke;
+  width: 100%;
 }
 
-/* //The Conversation */
 .chat-box {
   flex: 1;
   overflow-y: auto;
@@ -75,15 +110,16 @@ body {
   display: flex;
   gap: 15px;
   margin-bottom: 30px;
-  color:black;
+  color: black;
   font-family: Arial, Helvetica, sans-serif;
 }
+
 .bot-row {
   justify-content: flex-start;
 }
 
 .user-row {
-  flex-direction:row-reverse
+  flex-direction: row-reverse;
 }
 
 .avatar {
@@ -100,7 +136,7 @@ body {
 }
 
 .bot-avatar {
-  background-color:#4f46e5;
+  background-color: #4f46e5;
 }
 
 .user-avatar {
@@ -108,22 +144,22 @@ body {
 }
 
 .message-content {
-  padding: 12px 16px;
+  padding: 20px 26px;
   border-radius: 26px;
   line-height: 1.5;
   background-color: white;
-  border: 1px solid #e5e7eb;
 }
 
-/* The Input Dock */
+/* Input dock */
 .input-container {
   width: 100%;
   max-width: 768px;
-  margin: 0 auto;
+  margin: 0 auto 32px auto;
   padding: 20px;
   display: flex;
   gap: 10px;
   background-color: transparent;
+  border-radius: 32px;
 }
 
 .input-container input {
@@ -160,7 +196,7 @@ body {
   cursor: not-allowed;
 }
 
-/* 🌊 Option 2: Kelp Wave */
+/* Thinking animation */
 .thinking-bubble {
   display: flex;
   align-items: center;
@@ -172,7 +208,7 @@ body {
 .dot {
   width: 8px;
   height: 8px;
-  background-color:#4f46e5; /* Seaweed Green */
+  background-color: #4f46e5;
   border-radius: 50%;
   animation: kelpWave 1s infinite ease-in-out alternate;
 }
@@ -182,10 +218,149 @@ body {
 .dot:nth-child(3) { animation-delay: 0s; }
 
 @keyframes kelpWave {
-  0% {
-    transform: translateY(5px);
+  0% { transform: translateY(5px); }
+  100% { transform: translateY(-5px); }
+}
+
+/* Dark mode overrides */
+.ocean-mode {
+  background-color: #020617;
+  color: #e2e8f0;
+}
+
+.ocean-mode .sidebar {
+  background-color: #0f172a; 
+  border-right: 1px solid #1e293b;
+}
+
+.ocean-mode .bot-content {
+  background-color: #1e293b; 
+  color: #f8fafc;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+}
+
+.ocean-mode .user-content {
+  background-color: #4f46e5;
+  color: white;
+}
+
+.ocean-mode .input-container {
+  background-color: #0f172a;
+  border-top: 1px solid #1e293b;
+}
+
+.ocean-mode .input-container input {
+  background-color: #1e293b;
+  color: #f8fafc;
+  border: 1px solid #334155;
+}
+
+.ocean-mode .input-container input::placeholder {
+  color: #64748b;
+}
+
+.theme-toggle-btn {
+  margin-top: 15px;
+  background-color: transparent;
+  color: inherit;
+  padding: 10px;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: bold;
+}
+
+.ocean-mode .theme-toggle-btn {
+  border-color: #334155;
+  color: #94a3b8;
+}
+
+.theme-toggle-btn:hover {
+  background-color: rgba(148, 163, 184, 0.1);
+}
+
+.ocean-mode .main-content,
+.ocean-mode .chat-box {
+  background-color: #020617;
+}
+
+/* Mobile responsive design (breakpoint: 768px) */
+@media (max-width: 768px) {
+  /* Stack layout vertically */
+  .app-container {
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
   }
-  100% {
-    transform: translateY(-5px);
+
+  /* Transform sidebar to top navbar */
+  .sidebar {
+    width: 100%;
+    height: auto;
+    min-height: 60px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    border-right: none;
+    border-bottom: 1px solid #cbd5e1;
+    box-sizing: border-box;
+  }
+
+  .ocean-mode .sidebar {
+    border-bottom: 1px solid #1e293b;
+  }
+
+  .sidebar .logo {
+    margin-bottom: 0;
+    font-size: 20px;
+  }
+
+  .new-chat-btn {
+    padding: 6px 12px;
+    font-size: 14px;
+    max-width: 260px;
+  }
+
+  .theme-toggle-btn {
+    margin-top: 0;
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  /* Chat area adjustments */
+  .chat-box {
+    padding: 10px;
+  }
+
+  .message-row {
+    max-width: 90%;
+    gap: 8px;
+  }
+
+  .message-content {
+    padding: 10px 14px;
+    font-size: 15px;
+  }
+
+  .avatar {
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+  }
+
+  /* Input area adjustments */
+  .input-wrapper {
+    padding: 0 10px 10px 10px;
+  }
+
+  /* 16px font size prevents auto-zoom on iOS Safari */
+  .input-container input {
+    font-size: 16px; 
+    padding: 12px;
+  }
+
+  .send-btn {
+    padding: 0 15px;
   }
 }
