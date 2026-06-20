@@ -334,7 +334,7 @@ body {
   }
 
   .message-row {
-    max-width: 90%;
+    max-width: 100%;
     gap: 8px;
   }
 
