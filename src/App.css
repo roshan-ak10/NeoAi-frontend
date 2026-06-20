@@ -154,7 +154,7 @@ body {
 .input-container {
   width: 80%;
   margin-bottom: 32px;
-  margin-left: 10%;
+  margin-left: 6%;
   display: flex;
   gap: 10px;
   background-color: transparent;
@@ -244,8 +244,8 @@ body {
 }
 
 .ocean-mode .input-container {
-  background-color: #0f172a;
-  border-top: 1px solid #1e293b;
+  background-color: transparent;
+  border-top: none;
 }
 
 .ocean-mode .input-container input {
@@ -351,7 +351,7 @@ body {
   /* Input area adjustments */
   .input-wrapper {
 width: 100%;
-  max-width: 768px;
+  max-width: 700px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -381,7 +381,7 @@ width: 100%;
   justify-content: center;
   cursor: pointer;
   margin-bottom: 26px;
-  margin-left: 12%;
+  margin-left: 8%;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   transition: background-color 0.2s, transform 0.2s;
 }
