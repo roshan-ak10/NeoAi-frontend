@@ -121,6 +121,8 @@ function App() {
           {messages.length === 0 && (
             <div className="empty-chat-state">
               <h2>Hi, how can I help you?</h2>
+              <p>Experience premium AI assistance crafted for productivity.</p>
+              <p> Ask me anything to get started.</p>
             </div>
           )}
 
@@ -182,6 +184,13 @@ function App() {
               ➤
             </button>
           </div>
+
+          <div className="app-footer">
+            <p>NeoAI can make mistakes. Consider verifying important information.</p>
+            <p>© 2026 NeoAI Inc. All rights reserved. by Roshan A K</p>
+          </div>
+
+
         </div>
 
       </div>
