@@ -5,7 +5,7 @@ import remarkGfm from 'remark-gfm';
 
 function App() {
 
-  const isUnderMaintenance = true;
+  const isUnderMaintenance = false;
 
   const [isOceanMode, setIsOceanMode] = useState(() => {
     const savedTheme = localStorage.getItem("neoai-theme");
@@ -39,6 +39,8 @@ function App() {
 
   const [inputText, setInputText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  const [isResetting, setIsResetting] = useState(false);
   
   const messagesEndRef = useRef(null);
 
@@ -86,6 +88,9 @@ function App() {
   };
 
   const handleReset = async () => {
+    if (isResetting) return;
+
+    setIsResetting(true);
     try {
       const response = await fetch("https://neoai-backend-9ubx.onrender.com/reset", {
         method: "POST", 
@@ -99,45 +104,13 @@ function App() {
         localStorage.removeItem("neoai-chat");
       }
     } catch (error) {
-      console.error("The signal was lost at sea:", error);
+      console.error("Failed to reset chat:", error);
+    }
+    finally {
+      setIsResetting(false); // Turn off the loading state once finished
     }
   };
 
-  if (isUnderMaintenance) {
-    return (
-      <div className="maintenance-container" style={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100vh',
-        backgroundColor: '#0b111e', // Matches your dark theme base
-        color: '#ffffff',
-        fontFamily: 'sans-serif',
-        textAlign: 'center',
-        padding: '20px'
-      }}>
-        <div style={{ fontSize: '64px', marginBottom: '20px' }}>⚙️</div>
-        <h1 style={{ fontSize: '32px', fontWeight: '700', marginBottom: '10px', color: '#38bdf8' }}>
-          NeoAI Under Maintenance
-        </h1>
-        <p style={{ fontSize: '18px', color: '#9ca3af', maxWidth: '500px', lineHeight: '1.6' }}>
-          We are currently fine-tuning our AI servers to optimize performance. Our services will be fully restored shortly. Thank you for your patience!
-        </p>
-        <div style={{ 
-          marginTop: '30px', 
-          fontSize: '12px', 
-          color: '#6b7280', 
-          borderTop: '1px solid #1f2937', 
-          paddingTop: '15px',
-          width: '100%',
-          maxWidth: '300px'
-        }}>
-          © 2026 NeoAI Inc.
-        </div>
-      </div>
-    );
-  }
 
 if (isUnderMaintenance) {
     return (
@@ -210,16 +183,15 @@ if (isUnderMaintenance) {
           <div ref={messagesEndRef} />
         </div>
 
-        {/* Removed duplicate input-wrapper here */}
         <div className="input-wrapper">
-          {/* The Mobile Floating Button */}
           <button 
-            className="new-chat-fab" 
-            onClick={handleReset} 
-            title="Start a new chat"
-          >
-            +
-          </button>
+          className={`new-chat-fab ${isResetting ? 'rotating' : ''}`} 
+          onClick={handleReset} 
+          title="Start a new chat"
+          disabled={isResetting || isLoading}
+        >
+          {isResetting ? "⏳" : "+"}
+        </button>
           
           <div className="input-container">
             <input
@@ -241,7 +213,7 @@ if (isUnderMaintenance) {
 
           <div className="app-footer">
             <p>NeoAI can make mistakes. Consider verifying important information.</p>
-            <p>© 2026 NeoAI Inc. All rights reserved. by Roshan A K</p>
+            <p>© 2026 NeoAI Inc. All rights reserved by Roshan AK</p>
           </div>
 
 
