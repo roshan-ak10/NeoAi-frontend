@@ -4,6 +4,9 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
 function App() {
+
+  const isUnderMaintenance = true;
+
   const [isOceanMode, setIsOceanMode] = useState(() => {
     const savedTheme = localStorage.getItem("neoai-theme");
     return savedTheme === "true"; 
@@ -58,7 +61,7 @@ function App() {
     setIsLoading(true);
 
     try {
-      const response = await fetch("https://neoai-backend-9ubx.onrender.com/chat", {
+      const response = await fetch("http://localhost:3000/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ 
@@ -84,7 +87,7 @@ function App() {
 
   const handleReset = async () => {
     try {
-      const response = await fetch("https://neoai-backend-9ubx.onrender.com/reset", {
+      const response = await fetch("http://localhost:3000/reset", {
         method: "POST", 
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ sessionId: sessionId }) 
@@ -100,6 +103,57 @@ function App() {
     }
   };
 
+  if (isUnderMaintenance) {
+    return (
+      <div className="maintenance-container" style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+        backgroundColor: '#0b111e', // Matches your dark theme base
+        color: '#ffffff',
+        fontFamily: 'sans-serif',
+        textAlign: 'center',
+        padding: '20px'
+      }}>
+        <div style={{ fontSize: '64px', marginBottom: '20px' }}>⚙️</div>
+        <h1 style={{ fontSize: '32px', fontWeight: '700', marginBottom: '10px', color: '#38bdf8' }}>
+          NeoAI Under Maintenance
+        </h1>
+        <p style={{ fontSize: '18px', color: '#9ca3af', maxWidth: '500px', lineHeight: '1.6' }}>
+          We are currently fine-tuning our AI servers to optimize performance. Our services will be fully restored shortly. Thank you for your patience!
+        </p>
+        <div style={{ 
+          marginTop: '30px', 
+          fontSize: '12px', 
+          color: '#6b7280', 
+          borderTop: '1px solid #1f2937', 
+          paddingTop: '15px',
+          width: '100%',
+          maxWidth: '300px'
+        }}>
+          © 2026 NeoAI Inc.
+        </div>
+      </div>
+    );
+  }
+
+if (isUnderMaintenance) {
+    return (
+      <div className="maintenance-container">
+        <div className="maintenance-icon">⚙️</div>
+        <h1 className="maintenance-heading">NeoAI Under Maintenance</h1>
+        <p className="maintenance-text">
+          We are currently fine-tuning our AI servers to optimize performance. Our services will be fully restored shortly. Thank you for your patience!
+        </p>
+        <div className="maintenance-footer">
+          © 2026 NeoAI Inc.
+        </div>
+      </div>
+    );
+  }
+  
   return (
     <div className={`app-container ${isOceanMode ? 'ocean-mode' : ''}`}>
       
