@@ -462,11 +462,11 @@ body {
 
 .app-footer {
   text-align: center;
-  font-size: 12px;
+  font-size: 10px;
   color: #9ca3af; /* Light gray to not distract from the chat */
   margin-top: -15px; /* Pulls it up closer to the input box */
   padding-bottom: 20px;
-  width: 80%;
+  width: 90%;
   margin-left: 6%;
 }
 

@@ -213,8 +213,8 @@ if (isUnderMaintenance) {
           </div>
 
           <div className="app-footer">
-            <p>NeoAI can make mistakes.Consider verifying important info.</p>
-            <p>©2026 NeoAI Inc.All rights reserved by Roshan AK</p>
+            <p>NeoAI can make mistakes.Verify impt info's.</p>
+            <p>©2026 NeoAI Inc.All rights reserved-RoshanAk</p>
           </div>
 
 
