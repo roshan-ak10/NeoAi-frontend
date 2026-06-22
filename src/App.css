@@ -481,13 +481,7 @@ body {
 
 
 
-//Maintanence styling
-Separating the CSS makes your code much cleaner and easier to manage! Here is the exact same maintenance screen, but split properly into your CSS and React (JSX) files.
 
-Step 1: The CSS (src/App.css)
-Open your App.css file, scroll to the very bottom, and paste this new section. This holds all the visual styling for the maintenance page:
-
-CSS
 /* --- Maintenance Screen --- */
 .maintenance-container {
   display: flex;
