@@ -184,6 +184,7 @@ if (isUnderMaintenance) {
         </div>
 
         <div className="input-wrapper">
+          {/* The Mobile Floating Button */}
           <button 
           className={`new-chat-fab ${isResetting ? 'rotating' : ''}`} 
           onClick={handleReset} 
@@ -212,8 +213,8 @@ if (isUnderMaintenance) {
           </div>
 
           <div className="app-footer">
-            <p>NeoAI can make mistakes. Consider verifying important information.</p>
-            <p>© 2026 NeoAI Inc. All rights reserved by Roshan AK</p>
+            <p>NeoAI can make mistakes.Consider verifying important info.</p>
+            <p>©2026 NeoAI Inc.All rights reserved by Roshan AK</p>
           </div>
 
 
