@@ -61,7 +61,7 @@ function App() {
     setIsLoading(true);
 
     try {
-      const response = await fetch("http://localhost:3000/chat", {
+      const response = await fetch("https://neoai-backend-9ubx.onrender.com/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ 
@@ -87,7 +87,7 @@ function App() {
 
   const handleReset = async () => {
     try {
-      const response = await fetch("http://localhost:3000/reset", {
+      const response = await fetch("https://neoai-backend-9ubx.onrender.com/reset", {
         method: "POST", 
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ sessionId: sessionId }) 
@@ -153,7 +153,7 @@ if (isUnderMaintenance) {
       </div>
     );
   }
-  
+
   return (
     <div className={`app-container ${isOceanMode ? 'ocean-mode' : ''}`}>
       
