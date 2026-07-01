@@ -5,7 +5,7 @@ import remarkGfm from 'remark-gfm';
 
 function App() {
 
-  const isUnderMaintenance = false;
+  const isUnderMaintenance = true;
 
   const [isOceanMode, setIsOceanMode] = useState(() => {
     const savedTheme = localStorage.getItem("neoai-theme");
