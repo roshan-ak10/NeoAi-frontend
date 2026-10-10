@@ -63,7 +63,7 @@ function App() {
     setIsLoading(true);
 
     try {
-      const response = await fetch("https://neoai-backend-9ubx.onrender.com/chat", {
+      const response = await fetch("https://neoaibackend.onrender.com/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ 
@@ -92,7 +92,7 @@ function App() {
 
     setIsResetting(true);
     try {
-      const response = await fetch("https://neoai-backend-9ubx.onrender.com/reset", {
+      const response = await fetch("https://neoaibackend.onrender.com/reset", {
         method: "POST", 
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ sessionId: sessionId }) 
